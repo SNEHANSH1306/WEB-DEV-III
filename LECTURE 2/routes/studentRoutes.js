@@ -1,14 +1,12 @@
-// routes/studentRoutes.js
 const express = require("express");
 const router = express.Router();
 const students = require("../data/students");
 
-// GET all students
 router.get("/", (req, res) => {
   res.status(200).json(students);
 });
 
-// GET single student by id
+
 router.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const student = students.find((s) => s.id === id);
@@ -20,7 +18,7 @@ router.get("/:id", (req, res) => {
   res.status(200).json(student);
 });
 
-// POST - add a new student
+
 router.post("/", (req, res) => {
   const { name, course } = req.body;
 
@@ -38,7 +36,7 @@ router.post("/", (req, res) => {
   res.status(201).json({ message: "Student created", student: newStudent });
 });
 
-// PUT - update an existing student
+
 router.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const student = students.find((s) => s.id === id);
@@ -59,7 +57,6 @@ router.put("/:id", (req, res) => {
   res.status(200).json({ message: "Student updated", student });
 });
 
-// DELETE - remove a student
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const index = students.findIndex((s) => s.id === id);
